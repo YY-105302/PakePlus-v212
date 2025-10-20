@@ -1508,31 +1508,31 @@
                             <p data-translate="marker.description">固定数据中的标记会被替换为当前日期对应的值，并与输入数据的相同位置进行比较。</p>
                             <div class="marker-list">
                                 <div class="marker-item">
-                                    <span class="marker">~~~~</span>
+                                    <span class="marker">YYYY/~~~~</span>
                                     <span data-translate="marker.year_4">4位年份 (如: 2024)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">~~</span>
+                                    <span class="marker">YY/~~</span>
                                     <span data-translate="marker.year_2">2位年份 (如: 24)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">!!</span>
+                                    <span class="marker">MM/!!</span>
                                     <span data-translate="marker.month_2">2位月份 (如: 01-12)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">!</span>
+                                    <span class="marker">M/!</span>
                                     <span data-translate="marker.month_dynamic">动态月份 (1-9月:数字, 10月:O, 11月:N, 12月:D)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">##</span>
+                                    <span class="marker">DD/##</span>
                                     <span data-translate="marker.day_2">2位日期 (如: 01-31)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">$</span>
+                                    <span class="marker">D/$</span>
                                     <span data-translate="marker.weekday">星期几 (1-6, 周一=1, 周六=6, 周日=1)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">^^</span>
+                                    <span class="marker">WW/^^</span>
                                     <span data-translate="marker.week_2">2位周数 (每年第一天为第1周，下周一为第2周)</span>
                                 </div>
                                 <div class="marker-item">
@@ -1540,7 +1540,7 @@
                                     <span data-translate="marker.any_char">匹配任意单个字符</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">&</span>
+                                    <span class="marker">L/&</span>
                                     <span data-translate="marker.digit_1_8">匹配1-8的数字</span>
                                 </div>
                             </div>
@@ -1582,31 +1582,31 @@
                             <p data-translate="marker.description">固定数据中的标记会被替换为当前日期对应的值，并与输入数据的相同位置进行比较。</p>
                             <div class="marker-list">
                                 <div class="marker-item">
-                                    <span class="marker">~~~~</span>
+                                    <span class="marker">YYYY/~~~~</span>
                                     <span data-translate="marker.year_4">4位年份 (如: 2024)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">~~</span>
+                                    <span class="marker">YY/~~</span>
                                     <span data-translate="marker.year_2">2位年份 (如: 24)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">!!</span>
+                                    <span class="marker">MM/!!</span>
                                     <span data-translate="marker.month_2">2位月份 (如: 01-12)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">!</span>
+                                    <span class="marker">M/!</span>
                                     <span data-translate="marker.month_dynamic">动态月份 (1-9月:数字, 10月:O, 11月:N, 12月:D)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">##</span>
+                                    <span class="marker">DD/##</span>
                                     <span data-translate="marker.day_2">2位日期 (如: 01-31)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">$</span>
+                                    <span class="marker">D/$</span>
                                     <span data-translate="marker.weekday">星期几 (1-6, 周一=1, 周六=6, 周日=1)</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">^^</span>
+                                    <span class="marker">WW/^^</span>
                                     <span data-translate="marker.week_2">2位周数 (每年第一天为第1周，下周一为第2周)</span>
                                 </div>
                                 <div class="marker-item">
@@ -1614,7 +1614,7 @@
                                     <span data-translate="marker.any_char">匹配任意单个字符</span>
                                 </div>
                                 <div class="marker-item">
-                                    <span class="marker">&</span>
+                                    <span class="marker">L/&</span>
                                     <span data-translate="marker.digit_1_8">匹配1-8的数字</span>
                                 </div>
                             </div>
@@ -2046,17 +2046,17 @@
                 
                 // 验证
                 'validation.model_required': '机型编号不能为空',
-                'validation.model_too_long': '机型编号不能超过50个字符',
+                'validation.model_too_long': '机型编号不能超过99个字符',
                 'validation.model_invalid_chars': '机型编号只能包含字母、数字、下划线和连字符',
-                'validation.btk_too_long': 'BTK编码规则不能超过100个字符',
+                'validation.btk_too_long': 'BTK编码规则不能超过200个字符',
                 'validation.fixed_data_required': '固定数据不能为空',
                 'validation.fixed_data_too_long': '固定数据不能超过200个字符',
                 'validation.invalid_markers': '固定数据包含无效的标记或字符',
                 'validation.conflicting_markers': '固定数据包含冲突的标记组合',
                 'validation.model_exists': '机型已存在',
                 'validation.board_required': '板号不能为空',
-                'validation.board_too_long': '板号不能超过50个字符',
-                'validation.spec_too_long': '规格不能超过100个字符',
+                'validation.board_too_long': '板号不能超过99个字符',
+                'validation.spec_too_long': '规格不能超过300个字符',
                 
                 // 分页
                 'pagination.showing': '显示',
