@@ -2622,14 +2622,14 @@
                 // 机型编号验证
                 if (!model || model.trim() === '') {
                     errors.push(this.getTranslation('validation.model_required'));
-                } else if (model.length > 50) {
+                } else if (model.length > 100) {
                     errors.push(this.getTranslation('validation.model_too_long'));
                 } else if (!/^[a-zA-Z0-9_-]+$/.test(model)) {
                     errors.push(this.getTranslation('validation.model_invalid_chars'));
                 }
                 
                 // BTK规则验证
-                if (btkRule && btkRule.length > 100) {
+                if (btkRule && btkRule.length > 300) {
                     errors.push(this.getTranslation('validation.btk_too_long'));
                 }
                 
@@ -2721,11 +2721,11 @@
                 
                 if (!board || board.trim() === '') {
                     errors.push(this.getTranslation('validation.board_required'));
-                } else if (board.length > 50) {
+                } else if (board.length > 200) {
                     errors.push(this.getTranslation('validation.board_too_long'));
                 }
                 
-                if (spec && spec.length > 100) {
+                if (spec && spec.length > 300) {
                     errors.push(this.getTranslation('validation.spec_too_long'));
                 }
                 
@@ -2859,9 +2859,9 @@
                     };
                     
                     this.checkRecords.unshift(record);
-                    // 限制记录数量，保留最近1000条
-                    if (this.checkRecords.length > 1000) {
-                        this.checkRecords = this.checkRecords.slice(0, 1000);
+                    // 限制记录数量，保留最近10000条
+                    if (this.checkRecords.length > 10000) {
+                        this.checkRecords = this.checkRecords.slice(0, 10000);
                     }
                     
                     this.saveCheckRecords();
@@ -2954,9 +2954,9 @@
                         size: JSON.stringify(backup).length
                     });
                     
-                    // 限制备份数量，保留最近10个
-                    if (backups.length > 10) {
-                        backups.splice(10);
+                    // 限制备份数量，保留最近1000个
+                    if (backups.length > 1000) {
+                        backups.splice(1000);
                     }
                     
                     // 保存备份数据和备份列表
@@ -3126,8 +3126,8 @@
                                 size: JSON.stringify(backup).length
                             });
                             
-                            if (backups.length > 10) {
-                                backups.splice(10);
+                            if (backups.length > 1000) {
+                                backups.splice(1000);
                             }
                             
                             localStorage.setItem('backupList', JSON.stringify(backups));
@@ -5230,9 +5230,9 @@
                             }
                         }
                         
-                        // 限制记录数量，保留最近1000条
-                        if (this.dataManager.checkRecords.length > 1000) {
-                            this.dataManager.checkRecords = this.dataManager.checkRecords.slice(0, 1000);
+                        // 限制记录数量，保留最近10000条
+                        if (this.dataManager.checkRecords.length > 10000) {
+                            this.dataManager.checkRecords = this.dataManager.checkRecords.slice(0, 10000);
                         }
                         
                         this.dataManager.saveCheckRecords();
