@@ -189,6 +189,14 @@
             border-top: 1px solid #eee;
         }
         
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 8px;
+            display: none;
+        }
+        
         @media (max-width: 600px) {
             .results {
                 grid-template-columns: 1fr;
@@ -219,7 +227,8 @@
         <div class="content">
             <div class="input-section">
                 <label for="bomPoints">输入BOM点数:</label>
-                <input type="number" id="bomPoints" placeholder="请输入BOM点数" min="1">
+                <input type="number" id="bomPoints" placeholder="请输入BOM点数" min="1" step="any">
+                <div class="error-message" id="errorMessage">请输入有效的BOM点数！</div>
             </div>
             
             <div class="results">
@@ -242,9 +251,10 @@
             <div class="instructions">
                 <h3>计算说明</h3>
                 <p>根据输入的BOM点数，计算工艺路线的三个关键数值：</p>
-                <p><strong>倒数30</strong> = 51666 ÷ 输入BOM点数，保留三位小数<p>
-                <p><strong>倒数10</strong> = 倒数30 ÷ 3，保留三位小数<p>
-                <p><strong>倒数20</strong> = 倒数30 ÷ 3，保留三位小数<p>
+                    <p><strong>倒数30</strong> = 51666 ÷ 输入BOM点数，保留三位小数（不四舍五入）<p>
+                    <p><strong>倒数10</strong> = 倒数30 ÷ 3，保留三位小数（不四舍五入）<p>
+                    <p><strong>倒数20</strong> = 倒数30 ÷ 3，保留三位小数（不四舍五入）<p>
+                </ul>
             </div>
         </div>
         
@@ -257,20 +267,23 @@
         document.getElementById('calculateBtn').addEventListener('click', function() {
             // 获取输入值
             const bomPoints = parseFloat(document.getElementById('bomPoints').value);
+            const errorMessage = document.getElementById('errorMessage');
             
             // 验证输入
             if (isNaN(bomPoints) || bomPoints <= 0) {
-                alert('请输入有效的BOM点数！');
+                errorMessage.style.display = 'block';
                 return;
+            } else {
+                errorMessage.style.display = 'none';
             }
             
-            // 计算倒数30
+            // 计算倒数30 - 使用截断而不是四舍五入
             const result30 = 51666 / bomPoints;
-            const formattedResult30 = result30.toFixed(3);
+            const formattedResult30 = truncateToThreeDecimals(result30);
             
-            // 计算倒数10和倒数20
-            const result10and20 = result30 / 3;
-            const formattedResult10and20 = result10and20.toFixed(3);
+            // 计算倒数10和倒数20 - 使用截断而不是四舍五入
+            const result10and20 = 51666 / (bomPoints * 3);
+            const formattedResult10and20 = truncateToThreeDecimals(result10and20);
             
             // 更新显示结果
             document.getElementById('result30').textContent = formattedResult30;
@@ -278,11 +291,41 @@
             document.getElementById('result10').textContent = formattedResult10and20;
         });
         
+        // 截断到三位小数，不四舍五入
+        function truncateToThreeDecimals(num) {
+            // 将数字转换为字符串
+            const numStr = num.toString();
+            
+            // 查找小数点的位置
+            const decimalIndex = numStr.indexOf('.');
+            
+            // 如果没有小数点，直接返回数字
+            if (decimalIndex === -1) {
+                return numStr + '.000';
+            }
+            
+            // 截取整数部分和小数点后三位
+            const integerPart = numStr.substring(0, decimalIndex);
+            let decimalPart = numStr.substring(decimalIndex + 1, decimalIndex + 4);
+            
+            // 如果小数部分不足三位，补零
+            while (decimalPart.length < 3) {
+                decimalPart += '0';
+            }
+            
+            return integerPart + '.' + decimalPart;
+        }
+        
         // 添加回车键支持
         document.getElementById('bomPoints').addEventListener('keyup', function(event) {
             if (event.key === 'Enter') {
                 document.getElementById('calculateBtn').click();
             }
+        });
+        
+        // 输入时隐藏错误消息
+        document.getElementById('bomPoints').addEventListener('input', function() {
+            document.getElementById('errorMessage').style.display = 'none';
         });
     </script>
 </body>
